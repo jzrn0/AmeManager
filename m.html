@@ -8,10 +8,12 @@
         body {
             margin: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
+            text-align: center;
         }
 
         .container {
@@ -57,9 +59,41 @@
             left: 0;
             z-index: 2;
         }
+
+        .message {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .install-link {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .install-link:hover {
+            text-decoration: underline;
+        }
     </style>
+    <script>
+        function redirectToAppStore() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/android/i.test(userAgent)) {
+                window.location.href = "https://play.google.com/store/apps/details?id=com.figma.mirror&hl=en-US&pli=1";
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = "https://apps.apple.com/us/app/figma/id1152747299";
+            } else {
+                alert("Unsupported device.");
+            }
+        }
+    </script>
 </head>
 <body>
+    <div class="message">Make sure you have the Figma app installed.</div>
+    <a href="#" class="install-link" onclick="redirectToAppStore()">Install Figma</a>
     <div class="container">
         <div class="square"><img src="image1.png"><span></span></div>
         <div class="square"><img src="image2.png"><span></span></div>
